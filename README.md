@@ -24,7 +24,7 @@
 
 <p align="center">
   <a href="https://github.com/YoozNet/ChabokSocial/" target="_blank" rel="noopener noreferrer" >
-    <img src="https://github.com/YoozNet/ChabokSocial/raw/master/image/dashboard.png" alt="ChaBok screenshots" width="600" height="auto">
+    <img src="./image/dashboard.png" alt="ChaBok screenshots" width="600" height="auto">
   </a>
 </p>
 
