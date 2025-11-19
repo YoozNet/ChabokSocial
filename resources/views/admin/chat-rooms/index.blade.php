@@ -34,7 +34,7 @@
         <input type="number" name="per_page" value="{{ $perPage }}" min="5" max="100"
             class="w-full rounded-lg border text-xs px-3 py-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
     </div>
-    <div class="flex items-end">
+    <div class="flex items-center">
         <button type="submit"
             class="w-full rounded-lg px-3 py-2 text-xs font-semibold bg-slate-800 text-white hover:bg-slate-900 dark:bg-slate-200 dark:text-slate-900">
             اعمال فیلتر

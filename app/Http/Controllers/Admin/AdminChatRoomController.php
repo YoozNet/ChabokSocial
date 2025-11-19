@@ -9,6 +9,7 @@ use App\Services\Chat\ChatRoomService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\ChatRoom;
+use Carbon\Carbon;
 
 class AdminChatRoomController extends Controller
 {
@@ -37,11 +38,11 @@ class AdminChatRoomController extends Controller
             $this->roomService->ensureRoomIsAccessible($room);
         } catch (\RuntimeException $e) {
         }
-
+        $lastActivity = $room->messages()->max('created_at');
         $stats = [
             'messages_count' => $room->messages()->count(),
             'files_count'    => $room->messages()->withCount('attachments')->get()->sum('attachments_count'),
-            'last_activity'  => $room->messages()->max('created_at'),
+            'last_activity'  => $lastActivity ? Carbon::parse($lastActivity) : null,
         ];
 
         return view('admin.chat-rooms.show', [

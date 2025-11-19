@@ -34,7 +34,7 @@ class ChatRoomController extends Controller
         );
         try {
             $room = $this->service->createRoom($dto);
-        } catch (\RuntimeException $e) {
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
             return back()->withErrors(['error' => $e->getMessage()]);
         }
 

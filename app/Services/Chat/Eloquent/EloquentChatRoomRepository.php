@@ -33,6 +33,7 @@ class EloquentChatRoomRepository implements ChatRoomRepositoryInterface
             'api',
             'dashboard',
             'logout',
+            '404'
         ]);
     }
 

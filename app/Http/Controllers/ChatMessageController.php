@@ -105,11 +105,17 @@ class ChatMessageController extends Controller
 
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
             $parts = explode('.', $ip);
-            return $parts[0] . '.' . $parts[1] . '.' . $parts[2] . '.x';
+            
+            if (count($parts) === 4) {
+                $parts[1] = 'x';
+                $parts[2] = 'x';
+                return implode('.', $parts);
+            }
         }
-
-        // very naive for IPv6
-        return substr($ip, 0, 8) . '::xxxx';
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return substr($ip, 0, 8) . '::xxxx';
+        }
+        return $ip;
     }
 
     private function rateLimiterKey(string $slug): string

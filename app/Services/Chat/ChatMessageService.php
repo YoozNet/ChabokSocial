@@ -28,7 +28,7 @@ class ChatMessageService
         }
         $encryptedBody = $dto->messageBody;
 
-        if ($room->password) {
+        if ($room->password && $dto->messageBody !== null) {
             $encryptionKey = hash('sha256', $room->password, true);
             $encrypter = new Encrypter($encryptionKey, 'AES-256-CBC');
             $encryptedBody = $encrypter->encryptString($dto->messageBody);
@@ -91,7 +91,7 @@ class ChatMessageService
     private function maybeDecryptMessage(ChatMessage $message, ChatRoom $room): string
     {
         if (!$room->password || empty($message->body)) {
-            return $message->body;
+            return $message->body ?? ''; 
         }
 
         try {

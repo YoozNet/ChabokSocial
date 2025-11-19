@@ -60,8 +60,7 @@
                     @endauth
                 </nav>
             @endif
-            <button id="themeToggle"
-                class="p-2 rounded-full  bg-white/60 dark:bg-gray-700/60  hover:bg-white/80 dark:hover:bg-gray-600/80  backdrop-blur-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 theme-transition shadow-lg">
+            <button id="themeToggle">
                 <span id="sunIcon" class="hidden text-xl text-yellow-500">☀️</span>
                 <span id="moonIcon" class="text-xl text-gray-300">🌙</span>
             </button>
