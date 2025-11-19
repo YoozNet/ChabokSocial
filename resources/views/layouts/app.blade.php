@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>چابک | @yield('title', 'چت مهمان')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ config('app.version', time()) }}">
+    <script src="{{ asset('js/tailwindcss.js') }}"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    backgroundImage: {
+                        'web3-light': 'linear-gradient(to bottom right, #e0f2fe, #f0f9ff)',
+                        'web3-dark': 'linear-gradient(to bottom right, #1f2937, #0f172a)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .theme-transition {transition: background-color 0.3s, color 0.3s, border-color 0.3s;}
+        .glass-border {border: 1px solid rgba(255, 255, 255, 0.5);}
+        .dark .glass-border {border: 1px solid rgba(255, 255, 255, 0.1);}
+    </style>
+
+    @stack('styles')
+</head>
+
+<body class="theme-transition bg-web3-light dark:bg-web3-dark text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+    <header class="theme-transition sticky top-0 z-10  bg-white/40 dark:bg-gray-800/40  backdrop-blur-md glass-border rounded-b-xl shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-300 drop-shadow-md">
+                <a href="{{ url('/') }}">چابک</a>
+            </h1>
+            @if (request()->routeIs('admin.*'))
+                <nav class="flex items-center gap-3 text-[11px]">
+                    @auth('admin')
+                        <a href="{{ route('admin.chat-rooms.index') }}"
+                        class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">
+                            اتاق‌ها
+                        </a>
+                        <form action="{{ route('admin.logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit"
+                                    class="text-slate-500 hover:text-rose-600 dark:text-slate-400 dark:hover:text-rose-400">
+                                خروج
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('admin.login') }}"
+                        class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white">
+                            ورود ادمین
+                        </a>
+                    @endauth
+                </nav>
+            @endif
+            <button id="themeToggle"
+                class="p-2 rounded-full  bg-white/60 dark:bg-gray-700/60  hover:bg-white/80 dark:hover:bg-gray-600/80  backdrop-blur-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 theme-transition shadow-lg">
+                <span id="sunIcon" class="hidden text-xl text-yellow-500">☀️</span>
+                <span id="moonIcon" class="text-xl text-gray-300">🌙</span>
+            </button>
+
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-5">
+        <div class="grid gap-5">
+            <div class="theme-transition p-8 rounded-3xl bg-white/20 dark:bg-gray-700/20  backdrop-blur-lg glass-border shadow-xl hover:shadow-2xl hover:scale-[1.02] transform duration-300">
+                @yield('content')
+            </div>
+        </div>
+    </main>
+    <footer class="theme-transition mt-auto  bg-white/40 dark:bg-gray-800/40  backdrop-blur-md glass-border rounded-t-xl">
+        <div class="container mx-auto px-4 py-6 text-center text-sm text-gray-700 dark:text-gray-300">
+            <p>
+                © متعلق به سامانه چابک | طراحی شده برای سال ۲۰۲۵
+            </p>
+        </div>
+    </footer>
+    @stack('modals')
+    @stack('scripts')
+    <script src="{{ asset('js/alpinejs.min.js') }}" defer></script>
+    <script>
+        const htmlElement = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        const setInitialTheme = () => {
+            const isDarkMode = localStorage.getItem('theme') === 'dark' ||
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+            if (isDarkMode) {
+                htmlElement.classList.add('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                htmlElement.classList.remove('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        };
+
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        });
+
+        setInitialTheme();
+    </script>
+
+</body>
+
+</html>

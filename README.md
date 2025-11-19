@@ -1,128 +1,59 @@
-<h1 align="center"/></h1>
-<br/>
-<p align="center">
-    <a href="#">
-        <img src="https://img.shields.io/github/license/YoozNet/ChabokSocial?style=flat-square" />
-    </a>
-    <a href="https://t.me/ChabokSocial" target="_blank">
-        <img src="https://img.shields.io/badge/telegram-group-blue?style=flat-square&logo=telegram" />
-    </a>
-    <a href="#">
-        <img src="https://img.shields.io/github/stars/YoozNet/ChabokSocial?style=social" />
-    </a>
-</p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
- <a href="./README.md">
- English
- </a>
- /
- <a href="./README-fa.md">
- فارسی
- </a>
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/YoozNet/ChabokSocial/" target="_blank" rel="noopener noreferrer" >
-    <img src="./image/dashboard.png" alt="ChaBok screenshots" width="600" height="auto">
-  </a>
-</p>
+## About Laravel
 
-# Overview
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-ChabokSocial is a real-time messaging app built on WebSockets, with a robust Laravel backend and a dynamic React frontend. The UI is styled using Tailwind CSS for a sleek, responsive experience.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-# Why using ChabokSocial?
-For security enthusiasts, ChabokSocial delivers end-to-end AES-256 encrypted chats with mandatory TOTP 2FA.  
-Experience lightning-fast real-time messaging over WebSocket+Redis with sub-100 ms delivery.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-# Features
+## Learning Laravel
 
-- **Real-time messaging**  
-  WebSocket-powered pub/sub over Redis for sub-100 ms delivery and true bi-directional chat.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
 
-- **End-to-end encryption**  
-  • Per-conversation 32 B AES-256-CBC keys (random IV, Base64)  
-  • Master keys derived via Argon2id (`sodium_crypto_pwhash`) from user password + salt  
-  • Secure AES-encrypted storage of all keys and payloads
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-- **Mandatory Two-Factor Authentication**  
-  Enforced TOTP login flow; every session requires a 6-digit time-based code.
+## Laravel Sponsors
 
-- **Backup codes**  
-  Ten one-time recovery codes, hashed in DB, for account access when TOTP device is unavailable.
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-- **User presence & status**  
-  Real-time online/offline tracking with `last_seen`, broadcast via Laravel Echo.
+### Premium Partners
 
-- **Message operations**  
-  • Send, receive, reply, edit (within 72 h), delete  
-  • Conversation “clear” to purge history  
-  • Pagination and cache of first-page chats
+- **[Vehikl](https://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development)**
+- **[Active Logic](https://activelogic.com)**
 
-- **Attachments & avatars**  
-  • Gz-compressed + AES-encrypted attachments in private storage  
-  • AES-decrypted avatars served with strict security headers
+## Contributing
 
-- **Profile management**  
-  • Secure avatar upload/encryption  
-  • 2FA-protected profile updates  
-  • Cache-optimized read/write
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-- **JSON-only, CSRF-safe API**  
-  All endpoints accept/reply only JSON (400 on others), mitigating XSRF risk.
+## Code of Conduct
 
-- **Distributed Redis caching**  
-  • Master keys, chat pages, backup codes, profile data  
-  • Automatic invalidation on update
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-- **Robust validation & error handling**  
-  Granular field rules, standardized 4xx/5xx JSON responses, centralized exception guard.
+## Security Vulnerabilities
 
-- **Secure key lifecycle**  
-  • Random `random_bytes` generation for salts & IVs  
-  • Argon2id KDF for GPU-resistance  
-  • Cache master keys for up to 40 days
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-- **Laravel + React + Tailwind CSS stack**  
-  • Laravel API with sanctum or passport  
-  • React SPA, RTL-compatible, “Vazir” font  
-  • Responsive, mobile-first UI with fluid animations
+## License
 
-- **Modular, extensible architecture**  
-  Clean separation of concerns, easy to customize 2FA, encryption parameters, and caching layers.
-
-## Installation
-
-Follow the installation guide here:  
-[https://github.com/YoozNet/ChabokSocial/install.md](./install.md)
-
----
-
-<p align="center">
-  <a href="https://t.me/ChabokSocial" target="_blank">
-    <img src="https://img.shields.io/badge/Telegram–Support%20Group-blue?style=flat-square&logo=telegram" alt="Telegram Support" />
-  </a>
-</p>
-
-Join our Telegram support group for any questions!
-
-Have a feature request or found a bug? Check our [Open Issues](https://github.com/YoozNet/ChabokSocial/issues).  
-
-# Donation
-
-If you found ChabokSocial useful and would like to support its development, you can make a donation in one of the following crypto networks:
-
-- TRON network (TRC20): `TWupWw6TEsJrjfqSEf1smJbrTy3ELRVxom`
-- Ethereum network: `0xf5bea36E77e540581455424d3706106e90CAa6ee`
-- Bitcoin network: `bc1qa3s40ydtsnlenaw275ehw97czq0fwpadaj0sl9`
-- Dogecoin network: `DGT4FqaXRkPC2or5pqbRReXAsqiQq1XH8P`
-- TON network: `UQCepi0jPfATD-AHGHtiRY0Iz5Z5-r-KOZ0ED59BCEso6Tts`
-- Litecoin network: `ltc1q38ffljlyx9hnrjezuhz0rkclgvpnf7sfj6w3fr`
-
-Thank you for your support!
-
----
-
-**Special thanks to our developers:**  
-YoozNet team and all community contributors for making ChabokSocial possible!  
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -1,0 +1,130 @@
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-Thin.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-Thin.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-Light.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-Light.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-Regular.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-Regular.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-SemiBold.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-SemiBold.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-Bold.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-Bold.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-ExtraBold.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-ExtraBold.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-ExtraBlack.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-ExtraBlack.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: YBakh;
+    font-style: normal;
+    font-weight: 950;
+    font-display: swap;
+    src: url(../fonts/woff/YekanBakhFaNum-Black.woff) format("woff"), url(../fonts/woff2/YekanBakhFaNum-Black.woff2) format("woff2")
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: YBakh, sans-serif;
+    direction: rtl
+}
+
+@keyframes blobMove {
+    0% {
+        transform: translate(0, 0) scale(1)
+    }
+
+    33% {
+        transform: translate(24px, -32px) scale(1.06)
+    }
+
+    66% {
+        transform: translate(-28px, 20px) scale(0.96)
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1)
+    }
+}
+
+.blob-1 {
+    animation: blobMove 20s ease-in-out infinite
+}
+
+.blob-2 {
+    animation: blobMove 26s ease-in-out infinite;
+    animation-delay: 3s
+}
+
+.blob-3 {
+    animation: blobMove 32s ease-in-out infinite;
+    animation-delay: 6s
+}
+
+#partners .partners-viewport {
+    overflow: hidden;
+    direction: ltr
+}
+
+#partners .partners-track {
+    display: flex;
+    align-items: center;
+    gap: var(--gap, 24px);
+    will-change: transform
+}
+
+#partners .logo {
+    flex: 0 0 auto
+}
+
+#partners .logo img {
+    height: 38px;
+    width: auto;
+    display: block
+}
+
+#partners .partners-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)
+}
