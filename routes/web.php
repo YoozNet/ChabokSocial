@@ -1,9 +1,12 @@
 <?php
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\AdminChatRoomController;
+use App\Http\Controllers\Installer\InstallController;
+use Illuminate\Support\Facades\{Auth, Http, Route};
 use App\Http\Controllers\ChatMessageController;
 use App\Http\Controllers\ChatRoomController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StorageController;
+
 /*
     |--------------------------------------------------------------------------
     | Chat routes
@@ -51,7 +54,7 @@ Route::name('chat.')->group(function () {
 });
 
 Route::middleware('signed')->group(function () {
-    Route::get('files/{path}', [App\Http\Controllers\StorageController::class, 'local'])->where('path', '.*')->name('file.local');
+    Route::get('files/{path}', [StorageController::class, 'local'])->where('path', '.*')->name('file.local');
 });
 
 /*
@@ -63,32 +66,51 @@ Route::middleware('signed')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     // Auth
-    Route::middleware('guest:admin')->group(function () {
-        Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
-        Route::post('/login', [AdminLoginController::class, 'login'])->name('login.attempt');
+    Route::controller(AdminLoginController::class)->group(function () {
+        Route::prefix('login')->middleware('guest:admin')->group(function () {
+            Route::get('/', 'showLoginForm')->name('login');
+            Route::post('/', 'login')->name('login.attempt');
+        });
+        
+        Route::post('logout', 'logout')->middleware('auth:admin')->name('logout');
     });
 
-    Route::post('logout', [AdminLoginController::class, 'logout'])
-        ->middleware('auth:admin')
-        ->name('logout');
 
-    // Protected admin area
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('chat-rooms', [AdminChatRoomController::class, 'index'])->name('chat-rooms.index');
-        Route::get('chat-rooms/{room}', [AdminChatRoomController::class, 'show'])->name('chat-rooms.show');
+    Route::middleware('auth:admin')->prefix('chat-rooms')->name('chat-rooms.')->controller(AdminChatRoomController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::prefix('{room}')->group(function () {
+            Route::get('/', 'show')->name('show');
+            Route::get('/messages', 'messages')->name('messages');
 
-        // لیست پیام‌های اتاق برای ادمین
-        Route::get('chat-rooms/{room}/messages', [AdminChatRoomController::class, 'messages'])
-            ->name('chat-rooms.messages');
-
-        // اکشن‌های مدیریت اتاق
-        Route::post('chat-rooms/{room}/deactivate', [AdminChatRoomController::class, 'deactivate'])
-            ->name('chat-rooms.deactivate');
-        Route::post('chat-rooms/{room}/activate', [AdminChatRoomController::class, 'activate'])
-            ->name('chat-rooms.activate');
-        Route::post('chat-rooms/{room}/extend-expire', [AdminChatRoomController::class, 'extendExpire'])
-            ->name('chat-rooms.extend-expire');
-        Route::delete('chat-rooms/{room}', [AdminChatRoomController::class, 'destroy'])
-            ->name('chat-rooms.destroy');
+            // Actions
+            Route::post('/deactivate', 'deactivate')->name('deactivate');
+            Route::post('/activate', 'activate')->name('activate');
+            Route::post('/extend-expire', 'extendExpire')->name('extend-expire');
+            Route::delete('/', 'destroy')->name('destroy');
+        });
     });
+});
+
+/*
+    |--------------------------------------------------------------------------
+    | Install routes
+    |--------------------------------------------------------------------------
+*/
+
+Route::prefix('install')->name('install.')->group(function () {
+    Route::get('/', [InstallController::class, 'intro'])->name('intro');
+
+    Route::get('/preflight', [InstallController::class, 'showPreflight'])->name('preflight');
+    Route::post('/preflight', [InstallController::class, 'runPreflight'])->name('preft');
+
+    Route::get('/env', [InstallController::class, 'showEnv'])->name('env');
+    Route::post('/env', [InstallController::class, 'applyEnv']);
+
+    Route::get('/database', [InstallController::class, 'showDatabase'])->name('db');
+    Route::post('/database', [InstallController::class, 'applyDatabase'])->name('database');
+
+    Route::get('/admin', [InstallController::class, 'showAdmin'])->name('admin');
+    Route::post('/admin', [InstallController::class, 'createAdmin']);
+
+    Route::get('/done', [InstallController::class, 'done'])->name('done');
 });

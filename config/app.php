@@ -25,7 +25,7 @@ return [
     | services the application utilizes. Set this in your ".env" file.
     |
     */
-
+    'installed' => env('APP_INSTALLED', false),
     'env' => env('APP_ENV', 'production'),
 
     /*

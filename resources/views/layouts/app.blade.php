@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>چابک | @yield('title', 'چت مهمان')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="color-scheme" content="light dark">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ config('app.version', time()) }}">
@@ -27,12 +27,35 @@
         .theme-transition {transition: background-color 0.3s, color 0.3s, border-color 0.3s;}
         .glass-border {border: 1px solid rgba(255, 255, 255, 0.5);}
         .dark .glass-border {border: 1px solid rgba(255, 255, 255, 0.1);}
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+            border: 2px solid transparent;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        #messages::-webkit-scrollbar {
+            width: 8px;
+        }
     </style>
 
     @stack('styles')
 </head>
 
-<body class="theme-transition bg-web3-light dark:bg-web3-dark text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+<body class="theme-transition bg-web3-light dark:bg-web3-dark text-gray-900 dark:text-gray-100 min-h-screen flex flex-col overflow-x-hidden">
     <header class="theme-transition sticky top-0 z-10  bg-white/40 dark:bg-gray-800/40  backdrop-blur-md glass-border rounded-b-xl shadow-lg">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-300 drop-shadow-md">
@@ -67,9 +90,9 @@
 
         </div>
     </header>
-    <main class="flex-grow container mx-auto px-4 py-5">
+    <main class="container mx-auto px-4 py-5 w-full">
         <div class="grid gap-5">
-            <div class="theme-transition p-8 rounded-3xl bg-white/20 dark:bg-gray-700/20  backdrop-blur-lg glass-border shadow-xl hover:shadow-2xl hover:scale-[1.02] transform duration-300">
+            <div class="theme-transition p-4 sm:p-8 rounded-3xl bg-white/20 dark:bg-gray-700/20  backdrop-blur-lg glass-border shadow-xl transform duration-300">
                 @yield('content')
             </div>
         </div>

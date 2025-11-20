@@ -62,10 +62,6 @@ class ChatMessageService
         $message = $this->messages->createWithAttachments($messageData, $attachmentsData);
         $message->load('attachments');
         $message->body = $this->maybeDecryptMessage($message, $room);
-        $message->attachments->map(function ($attachment) {
-            $attachment->signed_url = $this->getTemporaryFileUrl($attachment->path);
-            return $attachment;
-        });
         
         return [
             'message' => $message->load('attachments'),
@@ -81,10 +77,6 @@ class ChatMessageService
 
         return $messages->map(function (ChatMessage $message) use ($room) {
             $message->body = $this->maybeDecryptMessage($message, $room);
-            $message->attachments->map(function ($attachment) {
-                $attachment->signed_url = $this->getTemporaryFileUrl($attachment->path);
-                return $attachment;
-            });
             return $message;
         });
     }
@@ -115,15 +107,6 @@ class ChatMessageService
 
         return 'file';
     }
-    public function getTemporaryFileUrl(string $path): string
-    {
-        $expiration = now()->addMinutes(5);
-        return URL::temporarySignedRoute(
-            'file.local',
-            $expiration,
-            ['path' => $path]
-        );
-    }
     // ---------------------------------------------------------- ADMIN
     public function getMessagesForAdmin(ChatRoom $room, int $perPage = 50): LengthAwarePaginator
     {
@@ -136,10 +119,6 @@ class ChatMessageService
 
         $paginator->getCollection()->transform(function (ChatMessage $message) use ($room) {
             $message->body = $this->maybeDecryptMessage($message, $room);
-            $message->attachments->map(function ($attachment) {
-                $attachment->signed_url = $this->getTemporaryFileUrl($attachment->path);
-                return $attachment;
-            });
             return $message;
         });
 
