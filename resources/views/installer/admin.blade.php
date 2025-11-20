@@ -19,7 +19,7 @@
             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
                 نام کامل
             </label>
-            <input name="name" id="name" class="w-full rounded-xl border border-gray-300 p-3 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required placeholder="مثال: علی محمدی">
+            <input name="name" id="name" class="w-full rounded-xl border text-sm px-4 py-2.5 pl-16 bg-white/70 dark:bg-slate-900/60  border-indigo-300/50 dark:border-indigo-700/50 focus:outline-none focus:ring-2  focus:ring-indigo-500/70 focus:border-transparent theme-transition" required placeholder="مثال: علی محمدی">
         </div>
 
         <div>
@@ -27,27 +27,27 @@
                 آدرس ایمیل
                 <span class="text-xs text-gray-500 mr-2">(جهت ورود به پنل)</span>
             </label>
-            <input name="email" id="email" type="email" class="w-full rounded-xl border border-gray-300 p-3 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required placeholder="example@gardon.ir">
+            <input name="email" id="email" type="email" class="w-full rounded-xl border text-sm px-4 py-2.5 pl-16 bg-white/70 dark:bg-slate-900/60  border-indigo-300/50 dark:border-indigo-700/50 focus:outline-none focus:ring-2  focus:ring-indigo-500/70 focus:border-transparent theme-transition" required placeholder="example@gardon.ir">
         </div>
         <div>
             <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
                 نام کاربری
                 <span class="text-xs text-gray-500 mr-2">(جهت ورود به پنل)</span>
             </label>
-            <input name="username" id="username" type="text" class="w-full rounded-xl border border-gray-300 p-3 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required placeholder="username">
+            <input name="username" id="username" type="text" class="w-full rounded-xl border text-sm px-4 py-2.5 pl-16 bg-white/70 dark:bg-slate-900/60  border-indigo-300/50 dark:border-indigo-700/50 focus:outline-none focus:ring-2  focus:ring-indigo-500/70 focus:border-transparent theme-transition" required placeholder="username">
         </div>
         <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
                 رمز عبور
             </label>
-            <input name="password" id="password" type="password" class="password-field w-full rounded-xl border border-gray-300 p-3 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required minlength="12" placeholder="حداقل 12 کاراکتر">
+            <input name="password" id="password" type="password" class="password-field w-full rounded-xl border text-sm px-4 py-2.5 pl-16 bg-white/70 dark:bg-slate-900/60  border-indigo-300/50 dark:border-indigo-700/50 focus:outline-none focus:ring-2  focus:ring-indigo-500/70 focus:border-transparent theme-transition" required minlength="12" placeholder="حداقل 12 کاراکتر">
         </div>
 
         <div>
             <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">
                 تکرار رمز عبور
             </label>
-            <input name="password_confirmation" id="password_confirmation" type="password" class="password-field w-full rounded-xl border border-gray-300 p-3 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150" required minlength="12">
+            <input name="password_confirmation" id="password_confirmation" type="password" class="password-field w-full rounded-xl border text-sm px-4 py-2.5 pl-16 bg-white/70 dark:bg-slate-900/60  border-indigo-300/50 dark:border-indigo-700/50 focus:outline-none focus:ring-2  focus:ring-indigo-500/70 focus:border-transparent theme-transition" required minlength="12">
 
             <p id="password-match-error" class="text-sm text-red-600 mt-2 hidden">
                 ❌ رمز عبور و تکرار آن با هم مطابقت ندارند.
