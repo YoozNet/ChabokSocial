@@ -9,8 +9,8 @@
 
 <x-flash class="mt-5 mb-6" />
 <div class="mb-6 p-4 bg-indigo-50 dark:bg-slate-800 border-l-4 border-indigo-500 rounded-lg shadow-md">
-    <div class="flex items-center">
-        <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <div class="flex flex-col sm:flex-row sm:items-center">
+        <svg class="w-6 h-6 text-indigo-500 flex-shrink-0 mb-2 sm:mb-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
 
