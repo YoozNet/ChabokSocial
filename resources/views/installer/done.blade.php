@@ -18,7 +18,7 @@
     </p>
 
     <a href="{{ route("admin.login") }}" class="inline-block px-12 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 transition duration-300 text-white font-bold text-xl shadow-lg hover:shadow-xl transform hover:scale-105">
-        🚀 ورود به پنل مدیریت گردون
+        🚀 ورود به پنل مدیریت چابک
     </a>
 
     <div class="mt-8 pt-4 border-t border-gray-200">

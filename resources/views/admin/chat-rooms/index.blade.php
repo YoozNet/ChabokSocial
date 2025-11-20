@@ -8,7 +8,33 @@
 </h1>
 
 <x-flash class="mt-5 mb-6" />
+<div class="mb-6 p-4 bg-indigo-50 dark:bg-slate-800 border-l-4 border-indigo-500 rounded-lg shadow-md">
+    <div class="flex items-center">
+        <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
 
+        <div class="mr-3 text-sm text-slate-700 dark:text-slate-200">
+            <p class="font-bold mb-1 text-indigo-600 dark:text-indigo-400">
+                ⭐ نمونه کار و اطلاعیه توسعه‌دهنده (سعید شانقی)
+            </p>
+            <p>
+                این پنل مدیریت چت به صورت کامل (صفر تا صد) توسط سعید شانقی به عنوان یک نمونه کار حرفه‌ای توسعه داده شده است.
+                <span class="block mt-1">
+                    جهت بررسی کیفیت کد، به‌روزرسانی‌های پیشرفته (مانند تبدیل به چت آنلاین زنده) یا همکاری، می‌توانید با ایشان در ارتباط باشید.
+                </span>
+            </p>
+
+            <p class="mt-3 font-semibold text-xs">
+                ارادتمند شما:
+                <span class="text-indigo-600 dark:text-indigo-400">سعید شانقی</span> |
+                <a href="https://t.me/bugslay" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 underline transition duration-150">
+                    تلگرام: @bugslay
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
 <form method="GET" action="{{ route('admin.chat-rooms.index') }}" class="mb-4 grid grid-cols-1 md:grid-cols-5 gap-3">
     <div>
         <label class="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">شناسه (slug)</label>

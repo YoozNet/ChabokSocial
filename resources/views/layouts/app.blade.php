@@ -97,10 +97,10 @@
             </div>
         </div>
     </main>
-    <footer class="theme-transition mt-auto  bg-white/40 dark:bg-gray-800/40  backdrop-blur-md glass-border rounded-t-xl">
-        <div class="container mx-auto px-4 py-6 text-center text-sm text-gray-700 dark:text-gray-300">
+    <footer class="theme-transition mt-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-t-xl border-t border-slate-200 dark:border-slate-700">
+        <div class="container mx-auto px-4 py-4 text-center text-sm text-slate-700 dark:text-slate-300">
             <p>
-                © متعلق به سامانه چابک | طراحی شده برای سال ۲۰۲۵
+                © {{ date('Y') }} سامانه چت | توسعه و طراحی توسط <span class="font-bold text-indigo-600 dark:text-indigo-400">سعید شانقی</span>
             </p>
         </div>
     </footer>
